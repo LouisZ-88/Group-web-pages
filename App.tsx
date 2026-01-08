@@ -144,8 +144,7 @@ const App: React.FC = () => {
         <div className="flex items-center gap-3">
           <div className="bg-indigo-500 p-2 rounded-lg shadow-lg shadow-indigo-500/20"><LayoutGrid className="w-6 h-6" /></div>
           <div>
-            <h1 className="text-xl font-black tracking-tight uppercase text-white">Chamber Navigator</h1>
-            <p className="text-[10px] text-slate-400 font-bold">商會分組導航系統 v2.4</p>
+            <h1 className="text-xl font-black tracking-tight uppercase text-white">商會分組導航系統</h1>
           </div>
         </div>
         <div className="flex gap-2">

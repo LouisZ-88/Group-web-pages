@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Noto Sans TC", sans-serif;
+  background-color: #f8fafc;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+}
