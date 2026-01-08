@@ -148,9 +148,9 @@ const App: React.FC = () => {
           </div>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => window.print()} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-bold transition-all text-white">投影模式</button>
+          <button onClick={() => window.print()} className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-bold transition-all text-white">列印</button>
           <button onClick={handleGrouping} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-xs font-bold transition-all flex items-center gap-2 shadow-lg shadow-indigo-600/20 text-white">
-            <RefreshCcw className="w-4 h-4" /> 執行分組
+            <RefreshCcw className="w-4 h-4" /> 分組
           </button>
         </div>
       </nav>
@@ -291,7 +291,7 @@ const App: React.FC = () => {
                     onClick={handleGrouping}
                     className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-black shadow-lg shadow-indigo-600/20 hover:bg-indigo-700 transition-all active:scale-95 flex items-center justify-center gap-2"
                   >
-                    <RefreshCcw className="w-5 h-5" /> 產生分組結果
+                    <RefreshCcw className="w-5 h-5" /> 分組
                   </button>
 
                   <div className="bg-amber-50 p-4 rounded-xl border border-amber-100">
@@ -327,14 +327,7 @@ const App: React.FC = () => {
               ))}
             </div>
             
-            <div className="flex justify-center gap-4 no-print pb-20">
-              <button className="px-8 py-3 bg-white border border-slate-200 rounded-full font-bold flex items-center gap-2 text-slate-600 hover:bg-slate-50 transition-colors shadow-sm">
-                <Copy className="w-4 h-4" /> 複製文字
-              </button>
-              <button className="px-8 py-3 bg-slate-900 text-white rounded-full font-bold flex items-center gap-2 hover:bg-slate-800 shadow-xl shadow-slate-900/10 transition-colors">
-                <Download className="w-4 h-4" /> 匯出 CSV 報告
-              </button>
-            </div>
+
           </div>
         )}
 
