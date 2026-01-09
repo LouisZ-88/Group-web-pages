@@ -9,51 +9,78 @@ interface StatsProps {
 
 const Stats: React.FC<StatsProps> = ({ stats }) => {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
-      <StatCard 
-        label="總人數" 
-        value={stats.totalPeople} 
-        icon={<Users className="w-5 h-5 text-blue-500" />} 
-        bgColor="bg-blue-50"
-      />
-      <StatCard 
-        label="來賓人數" 
-        value={stats.totalGuests} 
-        icon={<Zap className="w-5 h-5 text-amber-500" />} 
-        bgColor="bg-amber-50"
-      />
-      <StatCard 
-        label="成功對接" 
-        value={stats.synergyCount} 
-        icon={<HeartHandshake className="w-5 h-5 text-pink-500" />} 
-        bgColor="bg-pink-50"
-        highlight={stats.synergyCount > 0}
-      />
-      <StatCard 
-        label="產業衝突" 
-        value={stats.conflictCount} 
-        icon={<AlertCircle className="w-5 h-5 text-rose-500" />} 
-        bgColor="bg-rose-50"
-        highlight={stats.conflictCount > 0}
-      />
-      <StatCard 
-        label="平均每房" 
-        value={stats.totalRooms ? Math.round(stats.totalPeople / stats.totalRooms * 10) / 10 : 0} 
-        icon={<DoorOpen className="w-5 h-5 text-indigo-500" />} 
-        bgColor="bg-indigo-50"
-      />
+    <div className="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 mb-8 no-print">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
+        <StatCard 
+          label="參與總人數" 
+          value={stats.totalPeople} 
+          icon={<Users className="w-6 h-6 text-indigo-500" />} 
+          bgColor="bg-indigo-50/50"
+          suffix="人"
+        />
+        <StatCard 
+          label="待對接來賓" 
+          value={stats.totalGuests} 
+          icon={<Zap className="w-6 h-6 text-amber-500" />} 
+          bgColor="bg-amber-50/50"
+          suffix="位"
+        />
+        <StatCard 
+          label="來賓成功對接" 
+          value={stats.synergyCount} 
+          icon={<HeartHandshake className="w-6 h-6 text-rose-500" />} 
+          bgColor="bg-rose-50/50"
+          highlight={stats.synergyCount > 0}
+          suffix="位"
+        />
+        <StatCard 
+          label="產業衝突警告" 
+          value={stats.conflictCount} 
+          icon={<AlertCircle className="w-6 h-6 text-slate-400" />} 
+          bgColor="bg-slate-50/50"
+          highlight={stats.conflictCount > 0}
+          isWarning={stats.conflictCount > 0}
+          suffix="處"
+        />
+        <StatCard 
+          label="精準對接小房" 
+          value={stats.totalRooms > 1 ? stats.totalRooms - 1 : stats.totalRooms} 
+          icon={<DoorOpen className="w-6 h-6 text-emerald-500" />} 
+          bgColor="bg-emerald-50/50"
+          suffix="間"
+          title="每房配置：1房長 + 1來賓 + 3~4會員"
+        />
+      </div>
     </div>
   );
 };
 
-const StatCard: React.FC<{label: string, value: number, icon: any, bgColor: string, highlight?: boolean}> = ({ label, value, icon, bgColor, highlight }) => (
-  <div className={`${bgColor} p-4 rounded-xl border border-white shadow-sm`}>
-    <div className="flex items-center gap-2 mb-1">
-      {icon}
-      <span className="text-xs text-slate-500 font-bold">{label}</span>
+const StatCard: React.FC<{
+  label: string, 
+  value: number, 
+  icon: React.ReactNode, 
+  bgColor: string, 
+  highlight?: boolean, 
+  isWarning?: boolean,
+  suffix?: string,
+  title?: string
+}> = ({ label, value, icon, bgColor, highlight, isWarning, suffix, title }) => (
+  <div 
+    title={title}
+    className={`${bgColor} p-5 rounded-2xl border border-white/50 shadow-sm flex flex-col justify-between transition-all hover:shadow-md cursor-help`}
+  >
+    <div className="flex items-center gap-3 mb-3">
+      <div className="p-2 bg-white rounded-lg shadow-sm">{icon}</div>
+      <span className="text-sm text-slate-500 font-black tracking-tight leading-tight">{label}</span>
     </div>
-    <div className={`text-2xl font-black ${highlight ? (label.includes('衝突') ? 'text-rose-600' : 'text-pink-600') : 'text-slate-800'}`}>
-      {value}
+    <div className="flex items-baseline gap-1">
+      <div className={`text-4xl font-black tracking-tighter ${
+        isWarning ? 'text-rose-600 animate-bounce' : 
+        highlight ? 'text-rose-600' : 'text-slate-900'
+      }`}>
+        {value}
+      </div>
+      {suffix && <span className="text-xs font-bold text-slate-400">{suffix}</span>}
     </div>
   </div>
 );

@@ -5,6 +5,7 @@
 body {
   font-family: "Noto Sans TC", sans-serif;
   background-color: #f8fafc;
+  font-size: 22px;
 }
 
 @media print {
